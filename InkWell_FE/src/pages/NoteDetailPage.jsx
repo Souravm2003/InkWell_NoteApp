@@ -19,7 +19,7 @@ const NoteDetailPage = ({deleteNote}) => {
     const {slug} = useParams()
 
     useEffect(() => {
-        axios.get(`https://inkwell-noteapp.onrender.com/${slug}/`)
+        axios.get(`https://inkwell-noteapp.onrender.com/notes/${slug}/`)
         .then(res =>{
             setNote(res.data)
             console.log(res.data)

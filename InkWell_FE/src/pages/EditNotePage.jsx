@@ -14,7 +14,7 @@ const EditNotePage = ({updateNote}) => {
   const {slug} = useParams()
   const navigate = useNavigate()
   useEffect(() => {
-    axios.get(`https://inkwell-noteapp.onrender.com/${slug}/`)
+    axios.get(`https://inkwell-noteapp.onrender.com/notes/${slug}/`)
     .then(res => {
       // console.log(res.data)
       setTitle(res.data.title)
