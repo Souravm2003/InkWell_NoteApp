@@ -111,9 +111,9 @@ CORS_ALLOW_HEADERS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Check if DATABASE_URL exists (production) or use individual parameters (development)
-DATABASE_URL = config('DATABASE_URL', default=None)
+DATABASE_URL = config('DATABASE_URL', default='')
 
-if DATABASE_URL:
+if DATABASE_URL and DATABASE_URL.strip():
     # Production database (Render)
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL)
