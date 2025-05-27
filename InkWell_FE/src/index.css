@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+/* RESET AND OVERFLOW PREVENTION */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 /* Base styles with responsive typography */
 body {
   background: #edf1f5;
@@ -10,8 +21,174 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
+/* CONTAINER AND LAYOUT FIXES */
+.container,
+.container-fluid {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+}
+
+/* NAVBAR FIXES */
+.navbar {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-nav {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.navbar-nav .nav-item {
+  flex-shrink: 0;
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+/* FILTER COMPONENT FIXES */
+.filter-component,
+.filters-container,
+.btn-group {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  min-width: max-content;
+  padding-bottom: 5px;
+}
+
+.filter-btn,
+.btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+/* MODAL AND FORM FIXES */
+.modal {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: calc(100vw - 30px);
+  margin: 15px auto;
+  padding: 0;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 15px;
+  overflow-x: hidden;
+}
+
+.modal-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* FORM ELEMENTS */
+.form-control,
+.form-select,
+input,
+textarea,
+select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* NOTE DETAIL PAGE FIXES */
+.note-detail-container,
+.note-detail,
+.single-note-detail {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 15px;
+}
+
+.note-detail-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.note-detail-title,
+.note-title {
+  font-size: clamp(18px, 4vw, 24px);
+  line-height: 1.3;
+  margin-bottom: 15px;
+  overflow-wrap: break-word;
+}
+
+.note-detail-body,
+.note-content {
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ADD/EDIT NOTE FORM FIXES */
+.add-note-form,
+.edit-note-form,
+.note-form {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.add-note-form .form-group,
+.edit-note-form .form-group,
+.note-form .form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* CARD STYLES */
 .card {
   position: relative;
   display: flex;
@@ -25,12 +202,17 @@ body {
   margin-bottom: 30px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 .card-body {
   flex: 1 1 auto;
   padding: 1.57rem;
   font-size: clamp(13px, 2vw, 15px);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Grid layout improvements */
@@ -40,7 +222,9 @@ body {
   gap: 1.5rem;
   padding: 1rem;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .note-has-grid .nav-link {
@@ -54,11 +238,13 @@ body {
 .note-has-grid .single-note-item {
   width: 100%;
   max-width: none;
+  overflow: hidden;
 }
 
 .note-has-grid .single-note-item .card {
   border-radius: 10px;
   height: 100%;
+  min-height: 150px;
 }
 
 /* Touch-friendly interactions */
@@ -196,9 +382,68 @@ body {
   }
 }
 
-/* Responsive breakpoints */
+/* LOADER FIXES */
+.loader,
+.loading,
+.spinner {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+}
+
+/* React Spinners specific */
+.css-1uj5c4x,
+div[data-testid="loader"] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+}
+
+/* Common loader overlay */
+.loader-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(237, 241, 245, 0.8) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
+}
+
+/* Basic spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* RESPONSIVE BREAKPOINTS WITH OVERFLOW FIXES */
+
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .container,
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
   .note-has-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -212,30 +457,71 @@ body {
   .note-has-grid .single-note-item .side-stick {
     height: 25px;
   }
+  
+  .modal-dialog {
+    margin: 10px auto;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 10px;
+  }
+  
+  .navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .filter-component {
+    padding: 5px;
+  }
+  
+  .note-detail-container {
+    padding: 10px;
+  }
+  
+  .add-note-form,
+  .edit-note-form {
+    padding: 10px;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
+@media (min-width: 576px) and (max-width: 767.98px) {
   .note-has-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .modal-dialog {
+    max-width: calc(100vw - 40px);
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
   .note-has-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1rem;
   }
+  
+  .modal-dialog {
+    max-width: calc(100vw - 60px);
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1199.98px) {
   .note-has-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1.5rem;
+  }
+  
+  .modal-dialog {
+    max-width: calc(100vw - 80px);
   }
 }
 
@@ -243,6 +529,10 @@ body {
 @media (min-width: 1200px) {
   .note-has-grid {
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  
+  .modal-dialog {
+    max-width: 800px;
   }
 }
 
@@ -262,6 +552,31 @@ body {
   .note-has-grid {
     gap: 1rem;
   }
+  
+  .modal-body {
+    max-height: calc(100vh - 120px);
+  }
+}
+
+/* Mobile landscape specific fixes */
+@media (orientation: landscape) and (max-width: 896px) and (max-height: 414px) {
+  .navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  .modal-dialog {
+    margin: 5px auto;
+  }
+  
+  .modal-body {
+    padding: 10px;
+    max-height: calc(100vh - 80px);
+  }
+  
+  .note-detail-container {
+    padding: 5px;
+  }
 }
 
 /* Reduced motion preferences */
@@ -278,28 +593,70 @@ body {
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-  }
-  
-  .card {
-    background-color: #2d2d2d;
-    color: #e0e0e0;
-  }
+.dark-theme {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.dark-theme .card {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.dark-theme .loader-overlay {
+  background: rgba(26, 26, 26, 0.8) !important;
 }
 
 /* Print styles */
 @media print {
+  body {
+    overflow: visible;
+  }
+  
   .note-has-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    overflow: visible;
   }
   
   .card {
     break-inside: avoid;
     box-shadow: none;
     border: 1px solid #ccc;
+    overflow: visible;
   }
+  
+  .loader,
+  .loader-overlay,
+  .spinner {
+    display: none !important;
+  }
+  
+  .modal {
+    position: static !important;
+    display: block !important;
+  }
+}
+
+/* UTILITY CLASSES */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+.text-break {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.max-w-100 {
+  max-width: 100% !important;
 }
