@@ -76,8 +76,10 @@ WSGI_APPLICATION = 'InkWell.wsgi.application'
 
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
+    "https://inkwell-noteapp.onrender.com",
     "http://localhost:5173",
     "http://localhost:5173",
+    
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True  # For development only - remove in production
