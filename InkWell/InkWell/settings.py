@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+7djs*y@%u^cybo3-i6u3pla(o*g))^1dv-dl64eav7^opyy6v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://inkwell-noteapp.onrender.com']
+ALLOWED_HOSTS = ['inkwell-noteapp.onrender.com']
 
 
 # Application definition

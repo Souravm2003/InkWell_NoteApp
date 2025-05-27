@@ -1,8 +1,0 @@
-Django==5.2.1
-psycopg2-binary
-django-cors-headers
-djangorestframework
-python-decouple
-gunicorn
-whitenoise
-dj-database-url
