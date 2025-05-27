@@ -9,6 +9,8 @@ import axios from 'axios'
 import { FaLeaf } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
+const BACKEND_URL = "https://inkwell-noteapp.onrender.com";
+
 const App = () => {
   const [notes, setNotes] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +28,7 @@ const App = () => {
   useEffect(() => {
     if(searchText.length < 3) return;
     
-    axios.get(`http://127.0.0.1:8000/notes-search/?search=${searchText}`)
+    axios.get(`${BACKEND_URL}/notes-search/?search=${searchText}`)
     .then(res => {
       console.log(res.data)
       if (Array.isArray(res.data)) {
@@ -42,18 +44,18 @@ const App = () => {
   }, [searchText])
 
   const filteredNotes = Array.isArray(notes) ? (
-    filterText == "BUSINESS"
-    ? notes.filter(note => note.category=="BUSINESS")
-    : filterText == "PERSONAL"
-    ? notes.filter(note => note.category=="PERSONAL")
-    : filterText == "IMPORTANT"
-    ? notes.filter(note => note.category=="IMPORTANT")
+    filterText === "BUSINESS"
+    ? notes.filter(note => note.category==="BUSINESS")
+    : filterText === "PERSONAL"
+    ? notes.filter(note => note.category==="PERSONAL")
+    : filterText === "IMPORTANT"
+    ? notes.filter(note => note.category==="IMPORTANT")
     : notes
   ) : []
 
   useEffect(() => {
     setIsLoading(true)
-    axios.get("http://127.0.0.1:8000/notes/")
+    axios.get(`${BACKEND_URL}/notes/`)
     .then(res => {
       console.log(res.data)
       if (Array.isArray(res.data)) {
@@ -72,7 +74,7 @@ const App = () => {
   }, [])
 
   const addNote = (data) => {
-    axios.post("http://127.0.0.1:8000/notes/", data, {
+    axios.post(`${BACKEND_URL}/notes/`, data, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -89,7 +91,7 @@ const App = () => {
   };
 
   const updateNote = (data, slug) => {
-    axios.put(`http://127.0.0.1:8000/notes/${slug}/`, data)
+    axios.put(`${BACKEND_URL}/notes/${slug}/`, data)
     .then(res => {
       console.log(res.data)
       setNotes(prevNotes => 
@@ -106,7 +108,7 @@ const App = () => {
   }
 
   const deleteNote = (slug) => {
-    return axios.delete(`http://127.0.0.1:8000/notes/${slug}/`)
+    return axios.delete(`${BACKEND_URL}/notes/${slug}/`)
     .then(() => {
       setNotes(prevNotes => prevNotes.filter(note => note.slug !== slug))
       toast.success("Note deleted")
@@ -121,9 +123,9 @@ const App = () => {
   const router = createBrowserRouter(createRoutesFromElements( 
     <Route path="/" element={<MainLayout searchText={searchText} handleSearchText={handleSearchText}/>}>
       <Route index element={<HomePage notes={filteredNotes} loading={isLoading} handleFilterText={handleFilterText}/>}/>
-      <Route path='/add-note' element={<AddNotePage addNote={addNote}/>} />
+      <Route path='/add-note' element={<AddNotePage addNote={addNote}/>}/>
       <Route path='/notes/:slug' element={<NoteDetailPage deleteNote={deleteNote}/>}/>
-      <Route path='/edit-note/:slug' element={<EditNotePage updateNote={updateNote}/>} />
+      <Route path='/edit-note/:slug' element={<EditNotePage updateNote={updateNote}/>}/>
     </Route>
   ))
   
