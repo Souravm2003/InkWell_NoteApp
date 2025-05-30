@@ -3,7 +3,7 @@ import { MdStickyNote2 } from "react-icons/md";
 import { Link } from "react-router-dom"
 import { FormatDate } from './FormatDate';
 
-const NoteCard = ({note}) => {
+  const NoteCard = ({note}) => {
   const body = `${note.body.split(" ").slice(0, 20).join(" ")} ...`
   const color = note.category == "BUSINESS" ? "blue" : note.category == "PERSONAL" ? "green" : "purple"
   

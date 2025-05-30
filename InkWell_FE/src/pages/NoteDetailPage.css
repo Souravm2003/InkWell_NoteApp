@@ -7,12 +7,20 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .title {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.8rem;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.note-date {
+  font-size: 0.75rem;
+  white-space: nowrap;
 }
 
 .button-group {
@@ -33,6 +41,8 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  min-height: 40px;
 }
 
 .btn:focus {
@@ -65,37 +75,120 @@
   text-align: justify;
   font-size: 1.05rem;
   color: #333;
+  word-wrap: break-word;
+  hyphens: auto;
+  white-space: pre-wrap;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .note-container {
+    margin: 15px 10px;
     padding: 20px;
-  }
-
-  .btn {
-    font-size: 0.95rem;
-    padding: 9px 16px;
+    max-width: calc(100% - 20px);
   }
 
   .title {
     font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+    min-height: 44px; /* Touch-friendly minimum */
   }
 
   .description {
     font-size: 1rem;
+    text-align: left; /* Better for mobile reading */
+  }
+
+  /* Date display adjustments for mobile */
+  .d-flex.justify-content-center {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .note-date {
+    margin: 0 !important;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  .note-container {
+    margin: 10px 8px;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
   .btn {
     width: 100%;
     justify-content: center;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px 20px;
+    min-height: 48px;
   }
 
   .button-group {
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .note-date {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .note-container {
+    margin: 8px 5px;
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .btn {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape orientation on small devices */
+@media (max-width: 768px) and (orientation: landscape) {
+  .note-container {
+    margin: 10px auto;
+    max-width: 90%;
+  }
+
+  .button-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btn {
+    width: auto;
+    min-width: 120px;
   }
 }
 
