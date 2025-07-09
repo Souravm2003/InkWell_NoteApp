@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from django.db.models import Q
 from rest_framework import status
 
-# Create your views here.
 
 @api_view(['GET'])
 def search_notes(request):
@@ -24,13 +23,13 @@ def notes(request):
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        print(f"Received POST data: {request.data}")  # Add this
+        print(f"Received POST data: {request.data}")  
         serializer = NoteSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            print(f"Serializer errors: {serializer.errors}")  # Add this
+            print(f"Serializer errors: {serializer.errors}")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -68,5 +67,3 @@ def note_detail(request, slug):
         except Exception as e:
             print(f"Delete error: {str(e)}")
             return Response({"error": f"Delete failed: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
