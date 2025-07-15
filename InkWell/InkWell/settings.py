@@ -104,7 +104,7 @@ CORS_ALLOW_HEADERS = [
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
+        default='postgres://postgres:Sourav@2003@localhost:5432/InkWell'
     )
 }
 
